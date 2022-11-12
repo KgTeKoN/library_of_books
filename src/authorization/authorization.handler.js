@@ -1,5 +1,5 @@
 const { createHash, encryptData, decrypto, compareHash } = require('../crypto/crypto');
-const PersonController = require('../CRUD/UsersCRUD/person.controller')
+const PersonController = require('../CRUD/UsersCRUD/persondb.controller')
 const { createToken } = require('./jwt')
 const { accessTokenKey, refreshTokenKey } = require('../../config')
 
@@ -24,14 +24,22 @@ const signIn = async (data) => {
         const refreshToken = await createToken({password: result.password}, refreshTokenKey, 60*60);
         const hashRefreshToken = await createHash(refreshToken);
         const userInfo = await PersonController.updatePerson(username, { refresh_token: hashRefreshToken })
+        if ((userInfo) && (userInfo.status === 'Banned' || userInfo.status === 'Deleted')) {
+            return {
+                "success": false,
+                "message": `User ${userInfo.username} is ${userInfo.status}!`
+            }
+        }
         return {
             accessToken: accessToken,
-            refreshToken: refreshToken,
-            status: userInfo.status
+            refreshToken: refreshToken
         }
     }
 
-    return 'Invalid email or password';
+    return {
+        "success": false,
+        "message": 'Invalid email or password'
+    }
 }
 
 module.exports = { signUp, signIn }
