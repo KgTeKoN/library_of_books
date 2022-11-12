@@ -1,21 +1,18 @@
 const db = require('../knex/db')
 
 class PersonDAO {
-    async createPerson(username, password, first_name, last_name) {
-        const [id] = await db('users').insert({
-            username: username,
-            password: password,
-            first_name: first_name,
-            last_name: last_name
-        }).returning('id');
+    async createPerson(data) {
+        const [id] = await db('users')
+            .insert(data)
+            .returning('id');
 
         return id;
     }
 
-    async findPerson(username) {
-        const [result] = await db('users').select().where({
-            username: username
-        });
+    async findPerson(data) {
+        const [result] = await db('users')
+            .select('*')
+            .where(data);
 
         return result;
     }
@@ -29,10 +26,11 @@ class PersonDAO {
         return id;
     }
 
-    async deletePerson(username) {
-        const [id] = await db('users').where({
-            username: username
-        }).del().returning('id');
+    async deletePerson(data) {
+        const [id] = await db('users')
+            .where(data)
+            .del()
+            .returning('id');
 
         return id;
     }

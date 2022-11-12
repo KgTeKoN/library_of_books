@@ -1,9 +1,9 @@
 const personDAO = require('./person.handler')
 
 class PersonController {
-    async createPerson(username, password, first_name, last_name) {
+    async createPerson(data) {
         try {
-            const result = await personDAO.createPerson(username, password, first_name, last_name)
+            const result = await personDAO.createPerson(data)
             return result
         } catch (err) {
             console.log(err.message);
@@ -11,9 +11,9 @@ class PersonController {
         }
     }
 
-    async findPerson(username) {
+    async findPerson(data) {
         try {
-            const result = await personDAO.findPerson(username)
+            const result = await personDAO.findPerson(data)
             return result
         } catch (err) {
             console.log(err.message);
@@ -31,9 +31,9 @@ class PersonController {
         }
     }
 
-    async deletePerson(username) {
+    async deletePerson(data) {
         try {
-            const result = await personDAO.deletePerson(username)
+            const result = await personDAO.deletePerson(data)
             return result
         } catch (err) {
             console.log(err.message);
