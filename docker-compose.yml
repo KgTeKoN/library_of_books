@@ -8,8 +8,8 @@ services:
     volumes:
       - psql:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: test_task
-      POSTGRES_USER: test_task
+      POSTGRES_PASSWORD: library
+      POSTGRES_USER: library
       POSTGRES_DB: library_of_books_DB
     restart: always
 volumes:

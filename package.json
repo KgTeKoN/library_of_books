@@ -6,7 +6,16 @@
   "scripts": {
     "start": "node main.js",
     "dev": "nodemon main.js",
-    "compose": "docker-compose up"
+    "compose": "docker-compose up",
+    "createMigrateUsers": "knex migrate:make users --knexfile ./src/DB/knexfile.js",
+    "createMigrateBooks": "knex migrate:make books --knexfile ./src/DB/knexfile.js",
+    "createMigrateFavorites": "knex migrate:make favorites --knexfile ./src/DB/knexfile.js",
+    "makeMigrate": "npm run createMigrateUsers & npm run createMigrateBooks & npm run createMigrateFavorites",
+    "migrateRevertAll": "knex migrate:rollback --all --knexfile ./src/DB/knexfile.js",
+    "migrateRevert": "knex migrate:rollback --knexfile ./src/DB/knexfile.js",
+    "migrateUp": "knex migrate:up --knexfile ./src/DB/knexfile.js",
+    "migrateLatest": "knex migrate:latest --knexfile ./src/DB/knexfile.js",
+    "migrate": "npm run migrateUp & npm run migrateUp & npm run migrateUp"
   },
   "author": "Petruniak Andrii",
   "license": "ISC",
