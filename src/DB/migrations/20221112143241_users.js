@@ -6,7 +6,8 @@ exports.up = function(knex) {
         t.string("first_name", 40);
         t.string("last_name", 40);
         t.string("status", 40);
-        t.timestamps(true, true);
+        t.timestamp('created_at', { useTz: true }).defaultTo(knex.fn.now());
+        t.timestamp('updated_at', { useTz: true }).defaultTo(knex.fn.now());
     }).then(() => knex.raw(`
         CREATE OR REPLACE FUNCTION on_update_timestamp()
         RETURNS trigger AS $$

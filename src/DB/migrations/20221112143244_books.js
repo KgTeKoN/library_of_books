@@ -4,7 +4,7 @@ exports.up = function(knex) {
         t.string("title", 100).notNullable().unique();
         t.string("author", 300);
         t.decimal("year", 5, 0);
-        t.timestamps(true, false);
+        t.timestamp('created_at', { useTz: true });
     })
 }
 

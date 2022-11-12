@@ -5,7 +5,8 @@ exports.up = function(knex) {
         t.foreign("user_id").references("_id").inTable("users");
         t.integer("book_id").notNullable()
         t.foreign("book_id").references("_id").inTable("books");
-        t.timestamps(true, true);
+        t.timestamp('created_at', { useTz: true }).defaultTo(knex.fn.now());
+        t.timestamp('updated_at', { useTz: true }).defaultTo(knex.fn.now());
     })
         .then(() => knex.raw(`
         CREATE OR REPLACE FUNCTION on_update_timestamp()
