@@ -1,0 +1,11 @@
+{
+  "name": "library_of_books",
+  "version": "1.0.0",
+  "description": "test task",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Petruniak Andrii",
+  "license": "ISC"
+}
