@@ -1,7 +1,7 @@
 const db = require('../knex/db')
 
 class FavoritesDAO {
-    async createPair(data) {
+    async createFavoriteBook(data) {
         const [id] = await db('books')
             .insert(data)
             .returning('id');
@@ -9,7 +9,7 @@ class FavoritesDAO {
         return id;
     }
 
-    async findPair(data) {
+    async findFavoriteBook(data) {
         const [result] = await db('books')
             .select('*')
             .where(data);
@@ -17,7 +17,7 @@ class FavoritesDAO {
         return result;
     }
 
-    async updatePair(username, data) {
+    async updateFavoriteBook(username, data) {
         const [id] = await db('books')
             .where('title', username)
             .update(data)
@@ -26,7 +26,7 @@ class FavoritesDAO {
         return id;
     }
 
-    async deletePair(data) {
+    async deleteFavoriteBook(data) {
         const [id] = await db('books')
             .where(data)
             .del()

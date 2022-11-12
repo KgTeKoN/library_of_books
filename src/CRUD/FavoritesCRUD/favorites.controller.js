@@ -1,9 +1,9 @@
 const favoritesDAO = require('./favorites.handler')
 
 class FavoritesController {
-    async createPair(data) {
+    async createFavoriteBook(data) {
         try {
-            const result = await favoritesDAO.createPair(data)
+            const result = await favoritesDAO.createFavoriteBook(data)
             return result
         } catch (err) {
             console.log(err.message);
@@ -11,9 +11,9 @@ class FavoritesController {
         }
     }
 
-    async findPair(data) {
+    async findFavoriteBook(data) {
         try {
-            const result = await favoritesDAO.findPair(data)
+            const result = await favoritesDAO.findFavoriteBook(data)
             return result
         } catch (err) {
             console.log(err.message);
@@ -21,9 +21,9 @@ class FavoritesController {
         }
     }
 
-    async updatePair(title, data) {
+    async updateFavoriteBook(title, data) {
         try {
-            const result = await favoritesDAO.updatePair(title, data)
+            const result = await favoritesDAO.updateFavoriteBook(title, data)
             return result
         } catch (err) {
             console.log(err.message);
@@ -31,9 +31,9 @@ class FavoritesController {
         }
     }
 
-    async deletePair(data) {
+    async deleteFavoriteBook(data) {
         try {
-            const result = await favoritesDAO.deletePair(data)
+            const result = await favoritesDAO.deleteFavoriteBook(data)
             return result
         } catch (err) {
             console.log(err.message);
