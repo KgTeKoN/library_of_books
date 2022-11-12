@@ -1,10 +1,10 @@
 exports.up = function(knex) {
     return knex.schema.createTable("favorites", (t) => {
-        t.increments("_id").primary();
         t.string("user_name").notNullable();
         t.foreign("user_name").references("username").inTable("users");
         t.string("title").notNullable()
         t.foreign("title").references("title").inTable("books");
+        t.primary(['user_name', 'title']);
         t.timestamp('created_at', { useTz: true }).defaultTo(knex.fn.now());
         t.timestamp('updated_at', { useTz: true }).defaultTo(knex.fn.now());
     })
