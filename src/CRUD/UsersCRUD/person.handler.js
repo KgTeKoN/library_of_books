@@ -1,17 +1,17 @@
-const db = require('../knex/db')
+const db = require('../../DB/db')
 
 class PersonDAO {
     async createPerson(data) {
         const [id] = await db('users')
             .insert(data)
-            .returning('id');
+            .returning('_id');
 
         return id;
     }
 
     async findPerson(data) {
         const [result] = await db('users')
-            .select('*')
+            .select()
             .where(data);
 
         return result;
@@ -21,7 +21,7 @@ class PersonDAO {
         const [id] = await db('users')
             .where('username', username)
             .update(data)
-            .returning('id');
+            .returning('*');
 
         return id;
     }
@@ -30,7 +30,7 @@ class PersonDAO {
         const [id] = await db('users')
             .where(data)
             .del()
-            .returning('id');
+            .returning('_id');
 
         return id;
     }

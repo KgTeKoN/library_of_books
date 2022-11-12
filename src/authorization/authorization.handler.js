@@ -16,19 +16,18 @@ const signUp = async (data) => {
 
 const signIn = async (data) => {
     const { username, password } = data;
-    const result = await PersonController.findPerson(data);
+    const result = await PersonController.findPerson({ username: username });
     const decipherPassword = await decrypto(result.password);
     const compareResult = compareHash(decipherPassword, password)
     if(compareResult) {
-        const accessToken = await createToken(result.password, accessTokenKey, 60*10);
-        const refreshToken = await createToken(result.password, refreshTokenKey, 60*60);
+        const accessToken = await createToken({password: result.password}, accessTokenKey, 60*10);
+        const refreshToken = await createToken({password: result.password}, refreshTokenKey, 60*60);
         const hashRefreshToken = await createHash(refreshToken);
-        data.refreshToken = hashRefreshToken;
-        const id = await PersonController.updatePerson(username, data)
+        const userInfo = await PersonController.updatePerson(username, { refresh_token: hashRefreshToken })
         return {
             accessToken: accessToken,
             refreshToken: refreshToken,
-            status: result.status
+            status: userInfo.status
         }
     }
 

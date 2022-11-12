@@ -3,7 +3,7 @@ const routes = express.Router();
 const { registration, generateToken } = require('./authorization.controller');
 const { signUpValidator, signInValidator } = require('./validate.inputData');
 
-routes.post('/v1/auth/sign-up', signUpValidator, controllerSignUp);
-routes.post('/v1/auth/sign-in', signInValidator, generateToken)
+routes.post('/auth/sign-up', signUpValidator, registration);
+routes.post('/auth/sign-in', signInValidator, generateToken);
 
 module.exports = routes

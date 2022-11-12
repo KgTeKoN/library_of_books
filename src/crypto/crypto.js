@@ -10,6 +10,7 @@ const encryptData = async (data) => {
 
     let encrypted = cipher.update(String(data), 'utf8', 'hex')
     encrypted += cipher.final('hex');
+    console.log('iv', iv)
 
     return `${encrypted}:${iv}`
 }
