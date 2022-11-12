@@ -1,6 +1,6 @@
-const bookDAO = require('./books.handler')
+const bookDAO = require('./booksdb.handler')
 
-class BooksController {
+class BooksdbController {
     async createBook(data) {
         try {
             const result = await bookDAO.createBook(data)
@@ -42,4 +42,4 @@ class BooksController {
     }
 }
 
-module.exports = new BooksController();
+module.exports = new BooksdbController();

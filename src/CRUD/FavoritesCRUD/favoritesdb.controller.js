@@ -1,6 +1,6 @@
-const favoritesDAO = require('./favorites.handler')
+const favoritesDAO = require('./favoritesdb.handler')
 
-class FavoritesController {
+class FavoritesdbController {
     async createFavoriteBook(data) {
         try {
             const result = await favoritesDAO.createFavoriteBook(data)
@@ -42,4 +42,4 @@ class FavoritesController {
     }
 }
 
-module.exports = new FavoritesController();
+module.exports = new FavoritesdbController();

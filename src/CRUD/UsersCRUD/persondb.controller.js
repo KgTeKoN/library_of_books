@@ -1,6 +1,6 @@
-const personDAO = require('./person.handler')
+const personDAO = require('./persondb.handler')
 
-class PersonController {
+class PersondbController {
     async createPerson(data) {
         try {
             const result = await personDAO.createPerson(data)
@@ -42,4 +42,4 @@ class PersonController {
     }
 }
 
-module.exports = new PersonController();
+module.exports = new PersondbController();
