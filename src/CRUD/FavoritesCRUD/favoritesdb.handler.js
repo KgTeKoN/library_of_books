@@ -11,7 +11,7 @@ class FavoritesDAO {
 
     async findFavoriteBooks(data) {
         const result = await db('favorites')
-            .select('books._id', 'books.title', 'books.year' )
+            .select('books._id', 'books.title', 'books.author', 'books.year' )
             .where(data)
             .from('favorites')
             .leftJoin('books', 'favorites.title', 'books.title')
