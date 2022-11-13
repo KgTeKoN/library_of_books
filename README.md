@@ -51,6 +51,12 @@ http://localhost:5555/api/v1/add-favorite-book - POST endpoint for adding favori
                                                 { "username": "your_user_name",
                                                 "title": "book_title"}
 
-http://localhost:5555/api/v1/delete-favorite-book??username=your_user_name&title=title  - DELETE endpoint for deleting favorite book.
+http://localhost:5555/api/v1/delete-favorite-book?username=your_user_name&title=title  - DELETE endpoint for deleting favorite book.
+
+http://localhost:5555/api/v1/auth/activate - GET endpoint for log in. You must input "accessToken" in the header.
+
+http://localhost:5555/api/v1/auth/refresh - GET endpoint for creating new access token. You must input "refreshToken" in the header.
+
+http://localhost:5555/api/v1/auth/logout - GET endpoint for log out. You must input "accessToken" in the header.
 
 
