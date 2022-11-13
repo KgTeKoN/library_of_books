@@ -24,10 +24,4 @@ const deleteUser = async (req, res) => {
     res.end();
 }
 
-const deleteUserStatus = async (req, res) => {
-    const result = await deleteUserStatusH(req.query.username)
-    res.status(200).json(result);
-    res.end();
-}
-
-module.exports = { getUser, getAllUsers, updateUser, deleteUser, deleteUserStatus }
+module.exports = { getUser, getAllUsers, updateUser, deleteUser }

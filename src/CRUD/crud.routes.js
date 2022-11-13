@@ -8,7 +8,6 @@ routes.get('/get-user', getUser);
 routes.get('/get-all-users', getAllUsers);
 routes.patch('/update-user', updateUser);
 routes.delete('/delete-user', deleteUser);
-routes.delete('/delete-user-status', deleteUserStatus);
 
 // routes.get('/get-book', getBook);
 // routes.get('/get-all-books', getAllBooks);

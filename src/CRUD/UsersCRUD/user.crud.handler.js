@@ -77,18 +77,4 @@ const deleteUserH = async (username) => {
     return answer;
 }
 
-const deleteUserStatusH = async (username) => {
-    const result = await personController.updatePerson(username,{status: 'Deleted'});
-    const answer = {} ;
-    if ((result) && (result.username) ) {
-        answer.success = true;
-        answer.message = `${result.username} user status has been changed`;
-        return answer
-    }
-
-    answer.success = false;
-    answer.message = 'No user found'
-    return answer;
-}
-
-module.exports = { getUserH, getAllUsersH, updateUserH, deleteUserH, deleteUserStatusH }
+module.exports = { getUserH, getAllUsersH, updateUserH, deleteUserH }
