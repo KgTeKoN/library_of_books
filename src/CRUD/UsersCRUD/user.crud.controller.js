@@ -1,4 +1,4 @@
-const { getUserH, getAllUsersH, updateUserH, deleteUserH, deleteUserStatusH } = require('./user.crud.handler');
+const { getUserH, getAllUsersH, updateUserH, deleteUserH } = require('./user.crud.handler');
 
 const getUser = async (req, res) => {
     const result = await getUserH(req.query.username)

@@ -1,4 +1,4 @@
-const db = require('../knex/db')
+const db = require('../../DB/db')
 
 class BookDAO {
     async createBook(data) {
@@ -10,29 +10,29 @@ class BookDAO {
     }
 
     async findBook(data) {
-        const [result] = await db('books')
+        const result = await db('books')
             .select('*')
             .where(data);
 
         return result;
     }
 
-    async updateBook(username, data) {
-        const [id] = await db('books')
-            .where('title', username)
+    async updateBook(title, data) {
+        const [book] = await db('books')
+            .where('title', title)
             .update(data)
-            .returning('_id');
+            .returning('title');
 
-        return id;
+        return book;
     }
 
     async deleteBook(data) {
-        const [id] = await db('books')
+        const [title] = await db('books')
             .where(data)
             .del()
-            .returning('_id');
+            .returning('title');
 
-        return id;
+        return title;
     }
 }
 
