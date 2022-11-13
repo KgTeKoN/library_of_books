@@ -1,38 +1,31 @@
-const db = require('../knex/db')
+const db = require('../../DB/db')
 
 class FavoritesDAO {
     async createFavoriteBook(data) {
-        const [id] = await db('books')
+        const [user_name] = await db('favorites')
             .insert(data)
-            .returning('id');
+            .returning('username');
 
-        return id;
+        return user_name;
     }
 
-    async findFavoriteBook(data) {
-        const [result] = await db('books')
-            .select('*')
-            .where(data);
+    async findFavoriteBooks(data) {
+        const result = await db('favorites')
+            .select('books._id', 'books.title', 'books.year' )
+            .where(data)
+            .from('favorites')
+            .leftJoin('books', 'favorites.title', 'books.title')
 
         return result;
     }
 
-    async updateFavoriteBook(username, data) {
-        const [id] = await db('books')
-            .where('title', username)
-            .update(data)
-            .returning('id');
-
-        return id;
-    }
-
     async deleteFavoriteBook(data) {
-        const [id] = await db('books')
+        const [title] = await db('favorites')
             .where(data)
             .del()
-            .returning('id');
+            .returning('title');
 
-        return id;
+        return title;
     }
 }
 

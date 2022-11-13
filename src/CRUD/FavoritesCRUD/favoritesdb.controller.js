@@ -11,19 +11,9 @@ class FavoritesdbController {
         }
     }
 
-    async findFavoriteBook(data) {
+    async findFavoriteBooks(data) {
         try {
-            const result = await favoritesDAO.findFavoriteBook(data)
-            return result
-        } catch (err) {
-            console.log(err.message);
-            return err.message;
-        }
-    }
-
-    async updateFavoriteBook(title, data) {
-        try {
-            const result = await favoritesDAO.updateFavoriteBook(title, data)
+            const result = await favoritesDAO.findFavoriteBooks(data)
             return result
         } catch (err) {
             console.log(err.message);
