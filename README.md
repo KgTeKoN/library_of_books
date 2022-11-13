@@ -18,7 +18,8 @@ http://localhost:5555/api/v1/change-status?username=your_user_name&status=new_st
 
 http://localhost:5555/api/v1/auth/get-user?username=your_user_name - GET endpoint for receiving user information.
 
-http://localhost:5555/api/v1/get-all-users  - GET endpoint for receiving all users information.
+http://localhost:5555/api/v1/get-all-users  - GET endpoint for receiving all users information. There are pagination and filters
+Query parameters: username, first_name, last_name, sort (column), page, skip, limit
 
 http://localhost:5555/api/v1/update-user?username=your_user_name - PATCH endpoint for updating user information. You must send body with properties:
                                                                         { "username": "your_user_name",
@@ -31,7 +32,8 @@ http://localhost:5555/api/v1/delete-user?username=your_user_name - DELETE endpoi
 
 http://localhost:5555/api/v1/get-book?title=book_title - GET endpoint for receiving book information.
 
-http://localhost:5555/api/v1/get-all-books - GET endpoint for receiving all books information.
+http://localhost:5555/api/v1/get-all-books - GET endpoint for receiving all books information. There are pagination and filters
+Query parameters: title, author, year, sort (column), page, skip, limit
 
 http://localhost:5555/api/v1/create-book  - POST endpoint for creating book. You must send body with properties:
                                             { "title": "book_title",
