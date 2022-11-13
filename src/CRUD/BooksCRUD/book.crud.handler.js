@@ -29,7 +29,7 @@ const getAllBooksH = async (data) => {
     let skip = 0;
     if(data.skip) skip = data.skip;
     let page = 1;
-    if(data.page) skip += (data.page - 1) * limit;
+    if(data.page) skip = +skip + (data.page - 1) * limit;
     answer.page = page;
     const result = await pagination.paginationBooks(query, sort, limit, skip)
     if ((result) && (result.length)) {

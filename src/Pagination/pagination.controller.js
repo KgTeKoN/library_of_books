@@ -1,9 +1,9 @@
 const paginationHandler = require('./pagination.handler')
 
 class PaginationController {
-    async paginationBooks(data, sort, page, skip) {
+    async paginationBooks(data, sort, limit, skip) {
         try {
-            const result = await paginationHandler.byBook(data, sort, page, skip)
+            const result = await paginationHandler.byBook(data, sort, limit, skip)
             return result
         } catch (err) {
             console.log(err.message);
@@ -11,9 +11,9 @@ class PaginationController {
         }
     }
 
-    async paginationUsers(data) {
+    async paginationUsers(data, sort, limit, skip) {
         try {
-            const result = await paginationHandler.byUser(data)
+            const result = await paginationHandler.byUser(data, sort, limit, skip)
             return result
         } catch (err) {
             console.log(err.message);

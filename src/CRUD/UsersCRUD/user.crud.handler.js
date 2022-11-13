@@ -1,5 +1,6 @@
 const personController = require('./persondb.controller');
 const { getFavoriteBooksH, deleteFavoriteBookH } = require('../FavoritesCRUD/favorite.crud.handler')
+const pagination = require('../../Pagination/pagination.controller')
 
 const getUserH = async (username) => {
     const [result] = await personController.findPerson({username: username});
@@ -27,9 +28,26 @@ const getUserH = async (username) => {
     return answer
 }
 
-const getAllUsersH = async () => {
-    const result = await personController.findPerson({})
+const getAllUsersH = async (data) => {
+    const query = {};
     const answer = {};
+    if (data.username) query.username = data.username;
+    if (data.first_name) query.first_name = data.first_name;
+    if (data.last_name) query.last_name = data.last_name;
+    let sort = '_id';
+    if(data.sort) sort = data.sort;
+    let limit = 3;
+    if(data.limit) limit = data.limit;
+    answer.limit = limit;
+    let skip = 0;
+    if(data.skip) skip = data.skip;
+    console.log('skip', skip)
+    let page = 1;
+    if(data.page) {
+        skip = +skip + (data.page - 1) * limit;
+    }
+    answer.page = page;
+    const result = await pagination.paginationUsers(query, sort, limit, skip)
     if ((result) && (result.length)) {
         let count = 0;
         const usersInfo = result.map(element => {

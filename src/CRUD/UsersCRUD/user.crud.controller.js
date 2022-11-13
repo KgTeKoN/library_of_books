@@ -7,7 +7,7 @@ const getUser = async (req, res) => {
 }
 
 const getAllUsers = async (req, res) => {
-    const result = await getAllUsersH()
+    const result = await getAllUsersH(req.query)
     res.status(200).json(result);
     res.end();
 }
