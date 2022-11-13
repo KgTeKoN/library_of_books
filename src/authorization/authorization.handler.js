@@ -16,29 +16,34 @@ const signUp = async (data) => {
 
 const signIn = async (data) => {
     const { username, password } = data;
-    const result = await PersonController.findPerson({ username: username });
+    const [result] = await PersonController.findPerson({ username: username });
     const decipherPassword = await decrypto(result.password);
     const compareResult = compareHash(decipherPassword, password)
     if(compareResult) {
         const accessToken = await createToken({password: result.password}, accessTokenKey, 60*10);
         const refreshToken = await createToken({password: result.password}, refreshTokenKey, 60*60);
         const hashRefreshToken = await createHash(refreshToken);
-        const userInfo = await PersonController.updatePerson(username, { refresh_token: hashRefreshToken })
-        if ((userInfo) && (userInfo.status === 'Banned' || userInfo.status === 'Deleted')) {
+        if ((result) && (result.status === 'Banned' || result.status === 'Deleted')) {
             return {
-                "success": false,
-                "message": `User ${userInfo.username} is ${userInfo.status}!`
+                success: false,
+                message: `User ${result.username} is ${result.status}!`
             }
         }
-        return {
-            accessToken: accessToken,
-            refreshToken: refreshToken
+        const userInfo = await PersonController.updatePerson(username, { refresh_token: hashRefreshToken })
+        if (userInfo) {
+            return {
+                success: true,
+                tokens: {
+                    accessToken: accessToken,
+                    refreshToken: refreshToken
+                }
+            }
         }
     }
 
     return {
-        "success": false,
-        "message": 'Invalid email or password'
+        success: false,
+        message: 'Invalid email or password'
     }
 }
 

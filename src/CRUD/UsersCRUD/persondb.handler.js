@@ -10,29 +10,29 @@ class PersonDAO {
     }
 
     async findPerson(data) {
-        const [result] = await db('users')
-            .select()
+        const result = await db('users')
+            .select('*')
             .where(data);
 
         return result;
     }
 
     async updatePerson(username, data) {
-        const [id] = await db('users')
+        const [user] = await db('users')
             .where('username', username)
             .update(data)
-            .returning('*');
+            .returning('username');
 
-        return id;
+        return user;
     }
 
     async deletePerson(data) {
-        const [id] = await db('users')
+        const [user] = await db('users')
             .where(data)
             .del()
-            .returning('_id');
+            .returning('username');
 
-        return id;
+        return user;
     }
 }
 
