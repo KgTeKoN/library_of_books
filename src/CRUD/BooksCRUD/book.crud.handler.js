@@ -1,4 +1,5 @@
 const bookController = require('./booksdb.controller');
+const pagination = require('../../Pagination/pagination.controller')
 
 const getBookH = async (title) => {
     const [result] = await bookController.findBook({title: title});
@@ -14,14 +15,28 @@ const getBookH = async (title) => {
     return answer
 }
 
-const getAllBooksH = async () => {
-    const result = await bookController.findBook({})
+const getAllBooksH = async (data) => {
+    const query = {};
     const answer = {};
+    if (data.title) query.title = data.title;
+    if (data.author) query.author = data.author;
+    if (data.year) query.year = data.year;
+    let sort = '_id';
+    if(data.sort) sort = data.sort;
+    let limit = 3;
+    if(data.limit) limit = data.limit;
+    answer.limit = limit;
+    let skip = 0;
+    if(data.skip) skip = data.skip;
+    let page = 1;
+    if(data.page) skip += (data.page - 1) * limit;
+    answer.page = page;
+    const result = await pagination.paginationBooks(query, sort, limit, skip)
     if ((result) && (result.length)) {
-            answer.success = true;
-            answer.data = result;
-            return answer;
-        }
+        answer.success = true;
+        answer.data = result;
+        return answer;
+    }
 
     answer.success = false;
     answer.message = 'No books found'

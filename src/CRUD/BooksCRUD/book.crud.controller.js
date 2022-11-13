@@ -13,7 +13,7 @@ const getBook = async (req, res) => {
 }
 
 const getAllBooks = async (req, res) => {
-    const result = await getAllBooksH()
+    const result = await getAllBooksH(req.query)
     res.status(200).json(result);
     res.end();
 }
