@@ -3,7 +3,7 @@ exports.up = function(knex) {
         t.string("username").notNullable();
         t.foreign("username").references("username").inTable("users");
         t.string("title").notNullable()
-        t.foreign("title").references("title").inTable("books");
+        t.foreign("title").references("title").inTable("books").onDelete('CASCADE').onUpdate('CASCADE');
         t.primary(['username', 'title']);
         t.timestamp('created_at', { useTz: true }).defaultTo(knex.fn.now());
         t.timestamp('updated_at', { useTz: true }).defaultTo(knex.fn.now());
