@@ -9,7 +9,7 @@ const signUpValidator = async (req, res, next) => {
         res.status(400).send(result);
         res.end();
     }
-}
+};
 
 const signInValidator = async (req, res, next) => {
     try {

@@ -1,7 +1,7 @@
-const personController = require('../CRUD/UsersCRUD/persondb.controller')
+const personController = require('../CRUD/UsersCRUD/persondb.controller');
 
 const getStatusH = async (username) => {
-    const [result] = await personController.findPerson({username: username});
+    const [result] = await personController.findPerson({ username: username });
     const answer = {};
     if (result) {
         answer.success = true;
@@ -10,22 +10,24 @@ const getStatusH = async (username) => {
     }
 
     answer.success = false;
-    answer.message = 'No user found'
-    return answer
-}
+    answer.message = 'No user found';
+    return answer;
+};
 
 const changeStatusH = async (username, status) => {
-    const result = await personController.updatePerson(username,{status: status});
-    const answer = {} ;
-    if ((result) && (result.username) ) {
+    const result = await personController.updatePerson(username, {
+        status: status,
+    });
+    const answer = {};
+    if (result && result.username) {
         answer.success = true;
         answer.message = `${result.username} user status has been changed`;
-        return answer
+        return answer;
     }
 
     answer.success = false;
-    answer.message = 'No user found'
+    answer.message = 'No user found';
     return answer;
-}
+};
 
-module.exports = { getStatusH, changeStatusH }
+module.exports = { getStatusH, changeStatusH };

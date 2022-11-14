@@ -1,39 +1,39 @@
 {
-  "name": "library_of_books",
-  "version": "1.0.0",
-  "description": "test task",
-  "main": "main.js",
-  "scripts": {
-    "start": "node main.js",
-    "dev": "nodemon main.js",
-    "test": "jest",
-    "compose": "docker-compose up",
-    "createMigrateUsers": "knex migrate:make users --knexfile ./src/DB/knexfile.js",
-    "createMigrateBooks": "knex migrate:make books --knexfile ./src/DB/knexfile.js",
-    "createMigrateFavorites": "knex migrate:make favorites --knexfile ./src/DB/knexfile.js",
-    "makeMigrate": "npm run createMigrateUsers & npm run createMigrateBooks & npm run createMigrateFavorites",
-    "migrateRevertAll": "knex migrate:rollback --all --knexfile ./src/DB/knexfile.js",
-    "migrateRevert": "knex migrate:rollback --knexfile ./src/DB/knexfile.js",
-    "migrateUp": "knex migrate:up --knexfile ./src/DB/knexfile.js",
-    "migrateLatest": "knex migrate:latest --knexfile ./src/DB/knexfile.js",
-    "migrate": "npm run migrateUp & npm run migrateUp & npm run migrateUp"
-  },
-  "author": "Petruniak Andrii",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "nodemon": "^2.0.20",
-    "prettier": "2.7.1"
-  },
-  "dependencies": {
-    "argon2": "^0.30.2",
-    "body-parser": "^1.20.1",
-    "express": "^4.18.2",
-    "jest": "^29.3.1",
-    "joi": "^17.7.0",
-    "jsonwebtoken": "^8.5.1",
-    "knex": "^2.3.0",
-    "pg": "^8.8.0"
-  }
+    "name": "library_of_books",
+    "version": "1.0.0",
+    "description": "test task",
+    "main": "main.js",
+    "scripts": {
+        "start": "node main.js",
+        "dev": "nodemon main.js",
+        "test": "jest",
+        "compose": "docker-compose up",
+        "createMigrateUsers": "knex migrate:make users --knexfile ./src/DB/knexfile.js",
+        "createMigrateBooks": "knex migrate:make books --knexfile ./src/DB/knexfile.js",
+        "createMigrateFavorites": "knex migrate:make favorites --knexfile ./src/DB/knexfile.js",
+        "makeMigrate": "npm run createMigrateUsers & npm run createMigrateBooks & npm run createMigrateFavorites",
+        "migrateRevertAll": "knex migrate:rollback --all --knexfile ./src/DB/knexfile.js",
+        "migrateRevert": "knex migrate:rollback --knexfile ./src/DB/knexfile.js",
+        "migrateUp": "knex migrate:up --knexfile ./src/DB/knexfile.js",
+        "migrateLatest": "knex migrate:latest --knexfile ./src/DB/knexfile.js",
+        "migrate": "npm run migrateUp & npm run migrateUp & npm run migrateUp"
+    },
+    "author": "Petruniak Andrii",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "nodemon": "^2.0.20",
+        "prettier": "2.7.1"
+    },
+    "dependencies": {
+        "argon2": "^0.30.2",
+        "body-parser": "^1.20.1",
+        "express": "^4.18.2",
+        "jest": "^29.3.1",
+        "joi": "^17.7.0",
+        "jsonwebtoken": "^8.5.1",
+        "knex": "^2.3.0",
+        "pg": "^8.8.0"
+    }
 }

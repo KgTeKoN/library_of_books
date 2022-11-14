@@ -1,4 +1,8 @@
-const { updateUserSchema, createBookSchema, updateBookSchema } = require('./validate.scema');
+const {
+    updateUserSchema,
+    createBookSchema,
+    updateBookSchema,
+} = require('./validate.scema');
 
 const updateUserValidator = async (req, res, next) => {
     try {
@@ -9,7 +13,7 @@ const updateUserValidator = async (req, res, next) => {
         res.status(400).send(result);
         res.end();
     }
-}
+};
 
 const createBookValidator = async (req, res, next) => {
     try {
@@ -33,4 +37,8 @@ const updateBookValidator = async (req, res, next) => {
     }
 };
 
-module.exports = { updateUserValidator, createBookValidator, updateBookValidator };
+module.exports = {
+    updateUserValidator,
+    createBookValidator,
+    updateBookValidator,
+};

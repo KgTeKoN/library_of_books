@@ -1,4 +1,4 @@
-const db = require('../DB/db')
+const db = require('../DB/db');
 
 class PaginationHandler {
     async byBook(data, sort, limit, offset) {
@@ -7,10 +7,10 @@ class PaginationHandler {
             .where(data)
             .limit(limit)
             .offset(offset)
-            .orderBy(sort)
+            .orderBy(sort);
 
-        return result
-}
+        return result;
+    }
 
     async byUser(data, sort, limit, offset) {
         const result = await db('users')
@@ -18,10 +18,10 @@ class PaginationHandler {
             .where(data)
             .orderBy(sort)
             .limit(limit)
-            .offset(offset)
+            .offset(offset);
 
-        return result
+        return result;
     }
 }
 
-module.exports = new PaginationHandler()
+module.exports = new PaginationHandler();

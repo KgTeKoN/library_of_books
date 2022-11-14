@@ -1,18 +1,14 @@
-const db = require('../../DB/db')
+const db = require('../../DB/db');
 
 class PersonDAO {
     async createPerson(data) {
-        const [id] = await db('users')
-            .insert(data)
-            .returning('_id');
+        const [id] = await db('users').insert(data).returning('_id');
 
         return id;
     }
 
     async findPerson(data) {
-        const result = await db('users')
-            .select('*')
-            .where(data);
+        const result = await db('users').select('*').where(data);
 
         return result;
     }
@@ -36,4 +32,4 @@ class PersonDAO {
     }
 }
 
-module.exports = new PersonDAO()
+module.exports = new PersonDAO();

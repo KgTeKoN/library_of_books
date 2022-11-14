@@ -1,17 +1,17 @@
 const { validateToken } = require('./jwt');
-const { accessTokenKey, refreshTokenKey } = require('../../config')
+const { accessTokenKey, refreshTokenKey } = require('../../config');
 
-const accessTokenVerification= async (req, res, next) => {
+const accessTokenVerification = async (req, res, next) => {
     try {
         await validateToken(req.header('accessToken'), accessTokenKey);
-            return next();
+        return next();
     } catch (e) {
         res.status(400).send(e);
         res.end();
     }
-}
+};
 
-const refreshTokenVerification= async (req, res, next) => {
+const refreshTokenVerification = async (req, res, next) => {
     try {
         await validateToken(req.header('refreshToken'), refreshTokenKey);
         return next();
@@ -19,6 +19,6 @@ const refreshTokenVerification= async (req, res, next) => {
         res.status(400).send(e);
         res.end();
     }
-}
+};
 
 module.exports = { accessTokenVerification, refreshTokenVerification };
